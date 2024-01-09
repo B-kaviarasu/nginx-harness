@@ -1,0 +1,15 @@
+inputSet:
+  name: git-trigger
+  identifier: gittrigger
+  orgIdentifier: default
+  projectIdentifier: nginx
+  pipeline:
+    identifier: nginxdeploy
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
+  object Object: pipeline.properties.ci.codebase
