@@ -1,0 +1,52 @@
+pipeline:
+  name: nginx-deploy
+  identifier: nginxdeploy
+  projectIdentifier: nginx
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: gitnginx
+        build: <+input>
+  stages:
+    - stage:
+        name: gitclone
+        identifier: gitclone
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Docker
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    connectorRef: nginx
+                    image: nginx-harness
+                    shell: Sh
+                    command: |-
+                      stages{
+                              stage('checkout the code')
+                      }
+              - step:
+                  type: Run
+                  name: Run_2
+                  identifier: Run_2
+                  spec:
+                    connectorRef: nginx
+                    image: nginx-harness
+                    shell: Sh
+                    command: |2-
+                        steps{
+                                      git url:'https://github.com/B-kaviarasu/nginx-harness.git', branch: 'main'
+                                  }
+                  description: steps
