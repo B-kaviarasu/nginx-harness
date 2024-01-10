@@ -8,6 +8,7 @@ pipeline:
     ci:
       codebase:
         connectorRef: gitnginx
+        repoName: https://github.com/B-kaviarasu/nginx-harness.git
         build: <+input>
   stages:
     - stage:
